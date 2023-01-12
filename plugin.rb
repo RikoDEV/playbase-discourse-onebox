@@ -1,6 +1,6 @@
 # name: Discourse poszukaj.se onebox
 # about: Adds support for embedding poszukaj.se servers within Discourse.
-# version: 1.0.2
+# version: 1.0.3
 # authors: riko.dev
 # url: https://github.com/rikodev/poszukajse-discourse-onebox
 
@@ -20,17 +20,29 @@ class Onebox::Engine::PoszukajSEOnebox
 	
 	def to_html
 
+		og = get_opengraph
+
 		<<-HTML
-			<a href='#{@url}' target='_blank' style='display: block'>
-				<iframe
-					src='https://img.poszukaj.se/banners/server/#{id}/small'
-					width='100%'
-					height='130'
-					frameborder='0'
-					scrolling='no'
-					style='pointer-events: none'
-				></iframe>
-			</a>
+			<aside class="onebox allowlistedgeneric" data-onebox-src="#{@url}">
+				<header class="source">
+					<img src="https://poszukaj.se/storage/branding/logo.png" class="site-icon" style="width: auto;height: 18px;">
+				</header>
+			
+				<article class="onebox-body">
+					<img src="https://poszukaj.se/storage/servers/#{id}.png" class="thumbnail size-resolved onebox-avatar">
+					<h3>
+						<a href="#{@url}" target="_blank" rel="nofollow ugc noopener" tabindex="-1">#{og.title}</a>
+					</h3>
+				
+					<p>#{og.description}</p>
+
+					<img src="https://img.poszukaj.se/banners/server/#{id}/small" style="padding-bottom: 0px;">
+				
+				</article>
+			
+				<div style="clear: both"></div>
+			
+			</aside>
 		HTML
 	end
 end
