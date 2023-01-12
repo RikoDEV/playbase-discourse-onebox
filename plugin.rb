@@ -6,6 +6,7 @@
 
 class Onebox::Engine::PoszukajSEOnebox
 	include Onebox::Engine
+	include Onebox::StandardEmbed
 
 	REGEX = /^https?:\/\/poszukaj.se\/(?:\w+\/?)(\w*.+)\/(\d+)/
 	matches_regexp REGEX
@@ -18,6 +19,17 @@ class Onebox::Engine::PoszukajSEOnebox
 	end
 	
 	def to_html
-		"<a href=\"#{@url}\" target=\"_blank\"><iframe src=\"https://img.poszukaj.se/banners/server/#{id}/small\" width=\"650\" height=\"130\" frameborder=\"0\" style=\"overflow: hidden;\" scrolling=\"no\" allowfullscreen=\"allowfullscreen\"></iframe></a>"
+
+		<<-HTML
+			<a href="#{@url}" target="_blank">
+				<iframe
+					src="https://img.poszukaj.se/banners/server/#{id}/small"
+					width="650"
+					height="130"
+					frameborder="0"
+					scrolling="no"
+				></iframe>
+			</a>
+		HTML
 	end
 end
