@@ -10,6 +10,9 @@ class Onebox::Engine::PoszukajSEOnebox
 	REGEX = /^https?:\/\/poszukaj.se\/(?:\w+\/?)(\w*.+)\/(\d+)/
 	matches_regexp REGEX
 
+	requires_iframe_origins "https://img.poszukaj.se"
+	always_https
+
 	def id
 		@url.scan(REGEX).last
 	end
