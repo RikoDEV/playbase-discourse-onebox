@@ -1,6 +1,6 @@
 # name: Discourse poszukaj.se onebox
 # about: Adds support for embedding poszukaj.se servers within Discourse.
-# version: 1.0
+# version: 1.0.1
 # authors: riko.dev
 # url: https://github.com/rikodev/poszukajse-discourse-onebox
 
